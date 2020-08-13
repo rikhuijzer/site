@@ -13,7 +13,7 @@ jobs:
             - name: Install Nix
               uses: cachix/install-nix-action@v10
               with: 
-                nix_path: nixpkgs=channel:nixos-stable
+                nix_path: nixpkgs=channel:nixos-20.03
             - name: Fetch Nix packages
               run: nix-shell --run "bash -c exit"
             - run: nix-shell --run "dvisvgm --help"
