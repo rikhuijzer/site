@@ -9,12 +9,13 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps: 
-            - name: Checkout Git
+            - name: Git checkout
               uses: actions/checkout@v2
             - name: Install Nix
               uses: cachix/install-nix-action@v10
               with: 
                 nix_path: nixpkgs=channel:nixos-20.03
+              # Using Nix since the version of `dvisvgm` in the Ubuntu package is too old.
             - name: Fetch LaTeX via Nix
               run: nix-shell --run "bash -c exit"
             - name: Setup Julia

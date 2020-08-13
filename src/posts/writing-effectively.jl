@@ -1,9 +1,10 @@
----
-title: "Writing effectively"
-subtitle: ""
-date: "2020-08-12"
-tags: ["valuable", "community", "academic", "expert writer"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Writing effectively'",
+        date = "2020-08-12",
+        tags = "['valuable', 'community', 'academic', 'expert writer']"
+    ),
+raw"""
 
 According to McEnerney (2015), academics are trained to be poor writers.
 Eventually, they end up in his office and tell, while crying, that their career might end soon.
@@ -72,3 +73,6 @@ Wadge, B. (2020).
 The Secret of Academic Success - or fun filled failure if you prefer.
 Bill Wadge’s Blog.
 Retrieved July 29, 2020, from https://billwadge.wordpress.com/2020/02/06/the-secret-of-academic-success-or-fun-filled-failure-if-you-prefer/
+
+"""
+)

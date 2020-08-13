@@ -1,10 +1,9 @@
-
-combinations_permutations() = string(
-        GenDoc.generate_front_matter(;
-            title = "'Combinations and permutations'",
-            date = "2020-06-28",
-            tags = "['order', 'statistics']"
-        ),
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Combinations and permutations'",
+        date = "2020-06-28",
+        tags = "['order', 'statistics']"
+    ),
 raw"""
 
 Counting seems really basic up until the point that the numbers become extremely large.
