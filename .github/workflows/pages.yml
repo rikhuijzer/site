@@ -10,12 +10,11 @@ jobs:
         runs-on: ubuntu-latest
         steps: 
             - uses: actions/checkout@v2
-            - run: sudo apt-get install texlive-base
             - uses: julia-actions/setup-julia@latest 
               with:
                   version: 1.5
             - run: julia setup.jl
-            - uses: julia-actions/julia-buildpkg@latest
+            - run: sudo apt-get install texlive-base
             - run: julia -e 'import Site; Site.generate()'
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
