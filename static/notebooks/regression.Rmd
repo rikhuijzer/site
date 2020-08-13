@@ -1,0 +1,233 @@
+---
+title: "Binary logistic regression"
+author: "Rik Huijzer"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+header-includes:
+  - \usepackage{amsmath}
+output:   
+  bookdown::html_document2:
+    css: style.css
+    toc: true
+    toc_float:
+      collapsed: false
+    toc_depth: 2
+    fig_caption: true
+    number_sections: true
+    theme: cosmo        
+    highlight: kate
+    df_print: kable
+    code_folding: show
+  pdf_document:
+    toc: yes
+csl: ../style/apa-old-doi-prefix.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries, message=FALSE}
+library(gridExtra)
+library(knitr)
+library(tidyverse)
+```
+
+# Helper functions
+```{r}
+# Convert array of numbers to dataframe with single column.
+numbers2df <- function(X) {
+  X <- as.numeric(X) # I don't know why, but plotting libraries need this.
+  X <- tibble(X = X) # # ggplot needs a dataframe.
+  return(X)
+}
+
+# Transparant theme for ggplot which looks better on website.
+transparent_theme <- theme(
+    panel.background = element_rect(fill = "transparent"), # bg of the panel
+    plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+    legend.box.background = element_rect(fill = "transparent"), # get rid of legend panel bg
+    legend.key = element_rect(fill = "transparent", colour = NA), # get rid of key legend fill, and of the surrounding
+    axis.line = element_line(colour = "black") # adding a black line for x and y axis
+)
+
+r.1 <- function(x) format(round(x, 1), nsmall = 1) 
+image.path <- function(filename) sprintf("../images/regression/%s.svg", filename)
+
+lm.eval <- function(model, x) {
+  p_0 <- as.numeric(model$coefficients[1])
+  p_1 <- as.numeric(model$coefficients[2])
+  return(p_0 + x*p_1)
+}
+```
+
+```{r}
+# The local site often crashes when saving images, so this flag can disable saving of images.
+SAVE_IM <- T
+
+if (SAVE_IM) {
+  # Remove all images to avoid unused images to be kept.
+  unlink(image.path("*"))
+}
+```
+
+# Generating data
+```{r}
+set.seed(2020-03-05)
+n <- 18
+I <- 1:n
+Y <- I %>% map(function(x) ifelse(x %% 2 != 0, "apple", "pear"))
+H <- Y %>% map(function(x) ifelse(x == "apple", rnorm(1, mean=10, sd=1), rnorm(1, mean=12, sd=1)))
+W <- H %>% map(function(x) 0.6 * x)
+
+Y <- as.character(Y)
+H <- as.numeric(H %>% map(r.1))
+W <- as.numeric(W %>% map(r.1))
+
+df <- tibble(I, H, W, Y)
+df
+```
+
+## Simple regression
+```{r}
+# To make sure that all plots have the same width
+xbegin <- min(W) - 0.2
+xend <- max(W) + 0.4
+
+p <- ggplot(df, aes(W, H)) + 
+  geom_point() + 
+  scale_x_continuous(limits=c(xbegin,xend)) + 
+  transparent_theme
+if (SAVE_IM)
+  ggsave(file=image.path("w-h"), plot=p, width=8, height=4, bg="transparent")
+p
+```
+
+## Regression with residuals
+```{r}
+plot.lsq <- function() {
+  m <- mean(H)
+  sum.sq <- r.1(sum((H - m)^2))
+  print(sprintf("sum.sq: %s", sum.sq))
+  p <- ggplot(df, aes(W, H)) + 
+    geom_point() + 
+    geom_hline(yintercept=m) +
+    scale_x_continuous(limits=c(xbegin,xend)) + 
+    annotate("text", x=min(W) + 0.3, y=m + 0.3, label="mean") + 
+    annotate("segment", x=W, xend=W, y=H, yend=m, linetype="dashed") +
+    # annotate("text", x=max(W) - 0.3, y=m - ((m - min(W))/3), label=bquote(paste(Sigma["i=1"]^n~e[i]^2, " = ", .(sum.sq)))) + 
+    transparent_theme
+  if (SAVE_IM) 
+    ggsave(file=image.path("w-h-mean"), plot=p, width=8, height=4, bg="transparent")
+  return(p)
+}
+
+plot.lsq()
+```
+
+```{r}
+model = lm(H ~ W)
+model
+```
+
+```{r}
+p <- ggplot(df, aes(W, H)) +
+  geom_point() +
+  annotate("segment", x=xbegin, xend=xend, y=lm.eval(model, xbegin), yend=lm.eval(model, xend)) +
+  transparent_theme
+if (SAVE_IM)
+  ggsave(file=image.path("w-h-fit"), plot=p, width=8, height=4, bg="transparent")
+p
+```
+
+## Error for simple linear fit
+```{r}
+sum.sq <- function(A, B) sum((A - B)^2)
+H.fit <- W %>% (function(x) lm.eval(model, x))
+sum.sq(H, H.fit)
+
+cor(x=H, y=H.fit, method="pearson")
+```
+
+## Fitting a line through Y
+```{r}
+Y.digit <- as.numeric(I %>% map(function(x) ifelse(x %% 2 != 0, 0, 1)))
+model <- lm(Y.digit ~ W) 
+p <- ggplot(df, aes(W, Y.digit)) + 
+  geom_point() + 
+  ylab("Y") +
+  scale_y_continuous(limits=c(-0.5,1.5)) +
+  geom_hline(yintercept=0, linetype="dotted") + 
+  annotate("text", x=max(W), y=0.12, label="apples") +
+  geom_hline(yintercept=1, linetype="dotted") + 
+  annotate("text", x=4.5, y=1.12, label="pears") +
+  scale_x_continuous(limits=c(xbegin,xend)) + 
+  annotate("segment", x=xbegin, xend=xend, y=lm.eval(model, xbegin), yend=lm.eval(model, xend)) +
+  transparent_theme
+if (SAVE_IM)
+  ggsave(file=image.path("w-y-fit"), plot=p, width=8, height=4, bg="transparent")
+p
+```
+
+## Error for linear model
+```{r}
+Y.fit <- W %>% (function(x) lm.eval(model, x))
+sum.sq(Y.digit, Y.fit)
+cor(x=Y.digit, y=Y.fit, method="pearson")
+```
+
+```{r}
+accuracy <- function(X, Y) {
+  stopifnot(length(X) == length(Y))
+  n <- length(X)
+  correct <- sum(1:n %>% (function(i) X[i] == Y[i]))
+  result <- correct / n
+  return(result)
+}
+stopifnot(accuracy(c(0), c(1)) == 0)
+stopifnot(accuracy(c(0,1), c(0,0)) == 0.5)
+stopifnot(accuracy(c(0,1), c(0,1)) == 1)
+
+dichotomize <- function(X) as.numeric(X %>% map(function(x) ifelse(x <= 0.5, 0, 1)))
+Y.dichotomous <- dichotomize(Y.fit)
+accuracy(Y.digit, Y.dichotomous)
+```
+
+## Logistic regression
+```{r}
+df <- data.frame(Y = Y.digit, W=W)
+model <- glm(Y ~ W, family=binomial(link="logit"), data=df)
+partial.predict <- function(x) predict.glm(model, newdata=data.frame(W=x), type="response")
+
+p <- ggplot(df, aes(W, Y.digit)) + 
+  geom_point() + 
+  ylab("Y") +
+  stat_function(fun=partial.predict) +
+  scale_y_continuous(limits=c(-0.5,1.5)) +
+  geom_hline(yintercept=0, linetype="dotted") + 
+  annotate("text", x=max(W), y=0.12, label="apples") +
+  geom_hline(yintercept=1, linetype="dotted") + 
+  annotate("text", x=4.5, y=1.12, label="pears") +
+  scale_x_continuous(limits=c(xbegin,xend)) + 
+  transparent_theme
+if (SAVE_IM)
+  ggsave(file=image.path("w-y-logit-fit"), plot=p, width=8, height=4, bg="transparent")
+p
+```
+
+## Error for logit model
+```{r}
+Y.fit <- W %>% partial.predict
+sum.sq(Y.digit, Y.fit)
+Y.dichotomous <- dichotomize(Y.fit)
+accuracy(Y.digit, Y.dichotomous)
+```
+
+# Appendix
+
+## R version
+```{r version}
+sessionInfo()
+```

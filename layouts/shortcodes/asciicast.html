@@ -1,0 +1,8 @@
+{{ if not (.Page.Scratch.Get "asciicast") }}
+<!-- Include asciicast only first time -->
+<link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}/asciinema/asciinema-player.css" media=none onload="this.media='all';this.onload=null" />
+<script defer src="{{ .Site.BaseURL }}/asciinema/asciinema-player.js"></script>
+{{ .Page.Scratch.Set "asciicasts" true }}
+{{ end }}
+
+<asciinema-player src="{{ printf "%s/asciinema/%s.cast" (.Site.BaseURL) (.Get 0) }}"></asciinema-player>

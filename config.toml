@@ -1,0 +1,83 @@
+baseurl = "https://huijzer.xyz"
+title = "Huijzer.xyz"
+theme = "speedy-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "bw"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = ""
+
+disableKinds = [
+	"taxonomy",
+	"taxonomyTerm"
+]
+
+# To avoid dropping HTML.
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+    author = "Rik Huijzer"
+    info = ""
+    description = "Rik Huijzer's personal website"
+    keywords = "blog,developer,personal"
+    avatarurl = "img/self.jpg"
+
+		# Might be an interesting option later.
+    footercontent = ""
+
+    hidecredits = true
+    hidecopyright = true
+
+    rtl = false
+
+    math = true
+    custom_css = []
+
+# Social links
+[[params.social]]
+		name = "Mail"
+		icon = "fas fa-paper-plane fa-2x"
+		weight = 1
+		url = "mailto:t.h.huijzer@rug.nl"
+[[params.social]]
+		name = "LinkedIn"
+		icon = "fab fa-linkedin fa-2x"
+		weight = 4
+		url = "https://www.linkedin.com/in/rik-huijzer/"
+[[params.social]]
+		name = "University of Groningen"
+		icon = "fas fa-building fa-2x"
+		weight = 7
+		url = "https://www.rug.nl/staff/t.h.huijzer/"
+
+# GDPR settings
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+[[menu.main]]
+    name = "CV"
+    weight = 2
+    url = "/cv/"
