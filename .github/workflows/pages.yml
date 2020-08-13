@@ -24,7 +24,7 @@ jobs:
             - name: Add site package and other packages
               run: julia setup.jl
             - name: Generate site with Julia
-            - run: nix-shell --run "julia -e 'import Site; Site.generate()'"
+              run: nix-shell --run "julia -e 'import Site; Site.generate()'"
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
