@@ -3,7 +3,6 @@ title: "Statistical power from scratch"
 subtitle: ""
 date: "2020-02-16"
 tags: ["power", "statistics", "normal distribution", "t-test"]
-markup: pandoc
 ---
 
 In the 1970s the American government wanted to save fuel by allowing drivers to turn right at a red light [[Reinhart, 2020]](#reinhart2020power).

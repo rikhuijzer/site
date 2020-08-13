@@ -3,7 +3,6 @@ title: "Simple and binary regression"
 subtitle: ""
 date: "2020-03-05"
 tags: ["regression"]
-markup: pandoc
 ---
 
 One of the most famous scientific discoveries was Newton's laws of motion.

@@ -3,7 +3,6 @@ title: "Comparing means and SDs"
 subtitle: ""
 date: "2020-06-27"
 tags: ["rescaling", "statistics", "variance", "transformation"]
-markup: pandoc
 ---
 
 Many different questionnaires exists measuring the same constructs.

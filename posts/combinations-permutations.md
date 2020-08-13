@@ -3,7 +3,6 @@ title: "Combinations and permutations"
 subtitle: ""
 date: "2020-06-28"
 tags: ["order", "statistics"]
-markup: pandoc
 ---
 
 Counting seems really basic up until the point that the numbers become extremely large.

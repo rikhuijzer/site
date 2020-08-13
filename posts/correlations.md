@@ -3,7 +3,6 @@ title: "Correlations"
 subtitle: ""
 date: "2020-01-24"
 tags: ["independence", "covariance", "coefficient"]
-markup: pandoc
 ---
 
 Correlations are ubiquitous.

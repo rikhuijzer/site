@@ -3,7 +3,6 @@ title: "Predicates and reproducibility"
 subtitle: ""
 date: "2020-05-11"
 tags: ["reproducibility"]
-markup: pandoc
 ---
 
 While reading texts on statistics and meta-science I kept noticing vagueness.
