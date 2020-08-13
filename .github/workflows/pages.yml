@@ -14,7 +14,8 @@ jobs:
               with:
                   version: 1.5
             - run: julia setup.jl
-            - run: sudo apt-get install texlive-extra-utils 
+            - run: sudo apt install texlive-extra-utils 
+            - run: dvisvgm --help
             - run: julia -e 'import Site; Site.generate()'
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
