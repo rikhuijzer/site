@@ -3,7 +3,7 @@
 let
   inherit (nixpkgs) pkgs;
   myTex = with pkgs; texlive.combine {
-    inherit (texlive) scheme-basic dvisvgm amsfonts mathtools stmaryrd;
+    inherit (texlive) scheme-basic dvisvgm amsfonts mathtools pdfcrop stmaryrd;
   };
 
 in pkgs.mkShell {
