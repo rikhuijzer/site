@@ -15,6 +15,7 @@ jobs:
                   version: 1.5
             - run: julia setup.jl
             - run: sudo apt install texlive-extra-utils 
+            - run: curl -L https://nixos.org/nix/install | sudo sh
             - run: dvisvgm --help
             - run: julia -e 'import Site; Site.generate()'
             - name: Setup Hugo
