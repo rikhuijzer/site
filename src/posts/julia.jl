@@ -1,9 +1,10 @@
-+++
-title = "Niceties in the Julia programming language"
-subtitle = ""
-date = "2019-12-03"
-tags = ["julialang", "map", "programming"]
-+++
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Niceties in the Julia programming language'",
+        date = "2019-12-03",
+        tags = "['julialang', 'map', 'programming']"
+    ),
+raw"""
 
 In general I'm quite amazed by the Julia programming language.
 This blog post aims to be a demonstration of its niceties.
@@ -264,3 +265,6 @@ g             |    1      1
 Test Summary: | Pass  Total
 f             |    1      1
 ```
+
+"""
+)

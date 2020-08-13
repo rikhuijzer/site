@@ -1,9 +1,10 @@
----
-title: "Predicates and reproducibility"
-subtitle: ""
-date: "2020-05-11"
-tags: ["reproducibility"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "Predicates and reproducibility",
+        date = "2020-05-11",
+        tags = "['reproducibility']"
+    ),
+raw"""
 
 While reading texts on statistics and meta-science I kept noticing vagueness.
 For example, there seems to be half a dozen definitions of replicability in papers since 2016.
@@ -13,7 +14,7 @@ Assume determinism.
 Assume that for any function $f$ there is a set of predicates, or *context*, $C$ which need to hold for the function to hold, that is, return the correct answer.
 Let this be denoted by $C \xRightarrow{a} f$.
 For example, Bernoulli's equation solved for $\rho$ only holds for a context $C_b$ containing isentropic flows, that is, $C_b \Rightarrow \text{Bernoulli's equation}$, where $C_b$ contains isentropic flows.
-There have been arguments that such contexts need to contain an (open-ended) list of negative conditions [@carl2016causal].
+There have been arguments that such contexts need to contain an (open-ended) list of negative conditions (Hoefer, 2003).
 Let these contexts and the contexts below also contain this list.
 
 The goal of science is to come up with models which allow for making accurate predictions.
@@ -39,7 +40,7 @@ $$ \mathbb{C} \xRightarrow{1} C_u \xRightarrow{2} s_u \xRightarrow{3} r_u \xRigh
 Most steps have well-known names.
 Step 2 is called sampling, step 3 measuring, step 4 data cleaning or wrangling, step 5 calculating statistics, and step 6 inference.
 
-@goodman2016does introduce the following definitions for reproducibility:
+Goodman et al. (2003) introduce the following definitions for reproducibility.
 
 - methods reproducibility: "the ability to implement, as exactly as possible, the experimental and computational procedures, with the same data and tools, to obtain the same results",
 - results reproducibility: "the production of corroborating results in a new study, having followed the same experimental methods", and
@@ -54,3 +55,10 @@ These definitions can also be stated as
 [//]: # (TODO: Need to check definition from OSF.)
 
 ## References
+
+Goodman, S. N., Fanelli, D., & Ioannidis, J. P. A. (2016). What does research reproducibility mean? Science Translational Medicine, 8(341), 341ps12-341ps12. https://doi.org/10.1126/scitranslmed.aaf5027
+
+Hoefer, C. (2003). Causal Determinism. https://plato.stanford.edu/archives/spr2016/entries/determinism-causal/
+
+"""
+)

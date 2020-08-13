@@ -1,17 +1,10 @@
-+++
-date = "2015-08-25"
-title = "QoS setup using Tomato in combination with an Experiabox"
-slug = "tomato"
-tags = [
-	"QoS",
-	"Tomato firmware",
-	"Arcadyan",
-	"Experiabox",
-	"TomatoUSB"
-]
-categories = []
-series = []
-+++
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "QoS setup using Tomato in combination with an Experiabox",
+        date = "2015-08-25",
+        tags = "['QoS', 'TomatoUSB']"
+    ),
+raw"""
 
 *This is a copy of my blogpost at [Blogspot](https://rikhui.blogspot.com/2015/08/qossetuptomato.html).*
 
@@ -103,3 +96,6 @@ Overall I'm very pleased with the QoS setup so far.
 <center>
 	<img src="../../img/tomato.png" alt="Tomato screenshot">
 </center>
+
+"""
+)

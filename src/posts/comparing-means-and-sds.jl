@@ -1,9 +1,10 @@
----
-title: "Comparing means and SDs"
-subtitle: ""
-date: "2020-06-27"
-tags: ["rescaling", "statistics", "variance", "transformation"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Comparing means and SDs'",
+        date = "2020-06-27",
+        tags = "['rescaling', 'variance', 'transformation']"
+    ),
+raw"""
 
 Many different questionnaires exists measuring the same constructs.
 For example, the NEO-PI and the BFI both measure the Big Five personality traits.
@@ -91,3 +92,6 @@ I will add that as soon as I understand how to take that correction into account
 
 ### References
 Hogg, R. V., McKean, J., & Craig, A. T. (2005). Introduction to mathematical statistics. Pearson Education.
+
+"""
+)

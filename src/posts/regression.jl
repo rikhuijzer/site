@@ -1,9 +1,10 @@
----
-title: "Simple and binary regression"
-subtitle: ""
-date: "2020-03-05"
-tags: ["regression"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "Simple and binary regression",
+        date = "2020-03-05",
+        tags = "['simulating data']"
+    ),
+raw"""
 
 One of the most famous scientific discoveries was Newton's laws of motion.
 The laws allowed people to make predictions.
@@ -175,3 +176,6 @@ So, both metrics improve when switching to the logistic function.
 Rice, J. A. (2006).
 Mathematical statistics and data analysis.
 Cengage Learning.
+
+"""
+)

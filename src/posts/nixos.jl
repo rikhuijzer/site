@@ -1,9 +1,10 @@
-+++
-title = "Highlights of my NixOS configuration"
-subtitle = ""
-date = "2019-11-01"
-tags = ["nixos", "libsecret", "fish"]
-+++
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Highlights of my NixOS configuration'",
+        date = "2019-11-01",
+        tags = "['libsecret', 'fish']"
+    ),
+raw"""
 
 I have recently started paying attention to the time spent on fine-tuning my Linux installation.
 My conclusion is that it is a lot.
@@ -239,3 +240,6 @@ in {
   ];
 }
 ```
+
+"""
+)

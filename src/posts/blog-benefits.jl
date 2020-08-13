@@ -1,9 +1,11 @@
----
-title: "The benefits of writing blog posts"
-subtitle: ""
-date: "2020-01-16"
-tags: ["blog", "writing", "reasons"]
----
+
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'The benefits of writing blog posts'",
+        date = "2020-01-16",
+        tags = "['blog', 'writing', 'reasons']"
+    ),
+raw"""
 
 <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 
@@ -62,3 +64,5 @@ Retrieved January 16, 2020, from <http://gregorygundersen.com/blog/2020/01/12/wh
 Tips for Better Thinking.
 Retrieved July 29, 2020, from <http://www.aaronsw.com/weblog/thinkbetter>
 
+"""
+)

@@ -1,9 +1,10 @@
----
-title: "Writing checklist"
-subtitle: ""
-date: "2020-07-29"
-tags: ["pitfalls"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "Writing checklist",
+        date = "2020-07-29",
+        tags = "['pitfalls']"
+    ),
+raw"""
 
 I keep forgetting lessons about writing.
 After writing a text, my usual response is to declare it as near perfect and never look at it again.
@@ -87,3 +88,6 @@ Everything Should Be Made as Simple as Possible, But Not Simpler
 Retrieved July 29, 2020, from https://quoteinvestigator.com/2011/05/13/einstein-simple/
 
 [^simple]: This statement is likely to be attributed to Einstein (Quote Investigator, 2011).
+
+"""
+)

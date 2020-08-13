@@ -1,9 +1,10 @@
----
-title: "Correlations"
-subtitle: ""
-date: "2020-01-24"
-tags: ["independence", "covariance", "coefficient"]
----
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "'Correlations'",
+        date = "2020-01-24",
+        tags = "['independence', 'covariance', 'coefficient']"
+    ),
+raw"""
 
 Correlations are ubiquitous.
 For example, news articles reporting that a research paper found no correlation between X and Y.
@@ -184,3 +185,6 @@ John Wiley & Sons.
 Rice, J. A. (2006).
 Mathematical statistics and data analysis.
 Cengage Learning.
+
+"""
+)

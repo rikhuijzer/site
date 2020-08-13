@@ -1,9 +1,10 @@
-+++
-title = "Setting up a compile and run shortcut: Enter entr"
-subtitle = "Entr"
-date = "2019-10-29"
-tags = ["entr", "shortcut", "compile", "run"]
-+++
+content = string(
+    GenDoc.generate_front_matter(;
+        title = "Entr",
+        date = "2019-10-29",
+        tags = "['shortcut', 'compile', 'run']"
+    ),
+raw"""
 
 Having a compile and run shortcut seems like the most basic requirement for a developer.
 Most fully fledged IDE's therefore include it.
@@ -45,3 +46,6 @@ nmap <C-s> :wa<CR>
 imap <C-s> <ESC>:wa<CR>i
 ```
 After setting these all open buffers will be saved when pressing `Ctrl + s`.
+
+"""
+)
