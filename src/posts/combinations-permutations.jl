@@ -1,9 +1,11 @@
----
-title: "Combinations and permutations"
-subtitle: ""
-date: "2020-06-28"
-tags: ["order", "statistics"]
----
+
+combinations_permutations() = string(
+        GenDoc.generate_front_matter(;
+            title = "'Combinations and permutations'",
+            date = "2020-06-28",
+            tags = "['order', 'statistics']"
+        ),
+raw"""
 
 Counting seems really basic up until the point that the numbers become extremely large.
 Combinations and permutations are such a case.
@@ -48,3 +50,5 @@ So, the number of combinations is given by
 
 $$ C^n_k = {n\choose k} = \frac{n!}{k!(n-k)!}. $$
 
+"""
+)

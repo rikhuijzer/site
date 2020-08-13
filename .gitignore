@@ -1,10 +1,7 @@
 public/
 resources/
-
-# Haskell generated files with ghc --make
-bin/mylatex-formulae-filter
-bin/mylatex-formulae-filter.o
-bin/mylatex-formulae-filter.hi
+content/posts/
+static/latex/
 
 # Swap
 [._]*.s[a-v][a-z]
