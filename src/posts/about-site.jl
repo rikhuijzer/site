@@ -40,7 +40,8 @@ $$
 \end{tikzpicture}
 $$
 
-Local development is quick thanks to Julia and [Revise](https://github.com/timholy/Revise.jl).
+Local development is quick thanks to Julia and [Revise.jl](https://github.com/timholy/Revise.jl).
+
 Calling the build for the first time takes a while, but subsequent calls are blazingly fast.
 These are the build times for building this website a few times:
 
@@ -50,7 +51,9 @@ These are the build times for building this website a few times:
 $(read_times())
 ```
 
+This speed is almost unaffected when changing the code since Revise will only reload the parts which have changed.
 """, raw"""
+
 
 ## References
 
