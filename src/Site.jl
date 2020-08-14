@@ -1,5 +1,6 @@
 module Site
 
+import BenchmarkTools
 import Codex
 import GenTeX
 
@@ -22,6 +23,7 @@ function process_post(filename)
     extra_packages = raw"""
         \usepackage{amsfonts}
         \usepackage{mathtools}
+        \usepackage{tikz}
         """
     with_latex = GenTeX.substitute_latex(text, 1.6, im_dir, extra_packages)
     open(topath, "w") do io
@@ -30,12 +32,35 @@ function process_post(filename)
     topath
 end
 
-# At a later point, I might want at least one dynamic element per document.
-# So, put all the posts in Julia code.
-
 function generate() 
     posts = filter(endswith(".jl"), readdir(joinpath(project_root(), "src", "posts")))
     foreach(process_post, posts)
+end
+
+"""
+    generate_and_time()
+
+Generate website multiple times and stores the time required per build.
+"""
+function generate_and_time()
+    # Writing to file since it avoids cluttering the code with passing the message.
+    function write_times(times)
+        open(joinpath(project_root(), "content", "posts", "times.txt"), "w") do io
+            write(io, times)
+        end
+    end
+    function bench()::String 
+        info = summary(BenchmarkTools.@benchmark generate() samples=1 evals=1)
+    end
+    write_times("undefined")
+    times = map(i -> bench(), 1:5)
+    show_time(time::String) = """
+    julia> summary(@benchmark Site.generate() samples=1 evals=1)
+    $time
+    """
+    times = join(map(show_time, times), '\n')
+    write_times(times)
+    generate()
 end
 
 end # module
