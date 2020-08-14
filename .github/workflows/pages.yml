@@ -11,6 +11,17 @@ jobs:
         steps: 
             - name: Git checkout
               uses: actions/checkout@v2
+            - name: Setup Julia
+              uses: julia-actions/setup-julia@latest 
+              with:
+                  version: 1.5
+            - name: Add site package and other packages
+              run: julia setup.jl
+            - name: Setup Hugo
+              uses: peaceiris/actions-hugo@v2
+              with:
+                  hugo-version: '0.64.0'
+                  extended: true
             - name: Install Nix
               uses: cachix/install-nix-action@v10
               with: 
@@ -18,19 +29,8 @@ jobs:
               # Using Nix since the version of `dvisvgm` in the Ubuntu package is too old.
             - name: Fetch LaTeX via Nix
               run: nix-shell --run "bash -c exit"
-            - name: Setup Julia
-              uses: julia-actions/setup-julia@latest 
-              with:
-                  version: 1.5
-            - name: Add site package and other packages
-              run: julia setup.jl
             - name: Generate site with Julia
               run: nix-shell --run "julia -e 'import Site; Site.generate_and_time()'"
-            - name: Setup Hugo
-              uses: peaceiris/actions-hugo@v2
-              with:
-                  hugo-version: '0.64.0'
-                  extended: true
             - name: Generate site with Hugo
               run: hugo --gc --minify
             - name: Deploy
