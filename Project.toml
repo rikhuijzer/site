@@ -4,8 +4,8 @@ authors = ["Rik <t.h.huijzer@rug.nl>"]
 version = "0.1.0"
 
 [deps]
-BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Codex = "58f28e66-b97d-4550-b9c5-bacaf0313525"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 GenDoc = "7876af07-990d-54b4-ab0e-23690620f71b"
 GenTeX = "986b9465-75d6-44a0-94a2-e5aa8586ae9d"
 Memoize = "c03570c3-d221-55d1-a50c-7939bbd78826"

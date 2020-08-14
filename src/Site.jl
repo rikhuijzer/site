@@ -1,9 +1,9 @@
 module Site
 
-import BenchmarkTools
 import Codex
 import GenTeX
 
+using Dates
 using GenDoc
 
 project_root()::String = Codex.dirparent(pathof(Site), 2)
@@ -50,13 +50,15 @@ function generate_and_time()
         end
     end
     function bench()::String 
-        info = summary(BenchmarkTools.@benchmark generate() samples=1 evals=1)
+        start_time = Dates.now()
+        generate()
+        duration = string(Dates.now() - start_time)
     end
-    write_times("undefined")
+    write_times("undefined\n")
     times = map(i -> bench(), 1:5)
     show_time(time::String) = """
-    julia> summary(@benchmark Site.generate() samples=1 evals=1)
-    $time
+    julia> Site.generate()
+    Operation took $(time).
     """
     times = join(map(show_time, times), '\n')
     write_times(times)
