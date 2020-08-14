@@ -40,7 +40,7 @@ jobs:
                 path: |
                   ~/nix/store
                   ~/nix/bin
-                key: v1
+                key: nix-v1
 
             - name: Install LaTeX
               env: 
@@ -60,6 +60,12 @@ jobs:
                   sudo cp --force --recursive ~/nix/store/* $NIX_STORE/
                   sudo cp --force --recursive ~/nix/bin/* $NIX_BIN/
                 fi
+
+            - name: Cache LaTeX output
+              uses: actions/cache@v2.1.0
+              with:
+                path: static/latex
+                key: latex-v1
 
             - name: Generate site with Julia
               run: julia -e 'import Site; Site.generate_and_time()'

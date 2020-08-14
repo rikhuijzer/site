@@ -23,7 +23,7 @@ function process_page(filename, fromdir, topath)
         \usepackage{mathtools}
         \usepackage{tikz}
         """
-    with_latex = GenTeX.substitute_latex(text, 1.6, im_dir, extra_packages)
+    with_latex = GenTeX.substitute_latex(text, 1.6, im_dir; extra_packages)
     open(topath, "w") do io
         write(io, with_latex)
     end
