@@ -17,10 +17,10 @@ jobs:
               with:
                   version: 1.5
 
-            - name: Install packages
+            - name: Install Julia packages
               run: julia setup.jl
 
-            - name: Setup Hugo
+            - name: Install Hugo
               uses: peaceiris/actions-hugo@v2
               with:
                   hugo-version: '0.64.0'
