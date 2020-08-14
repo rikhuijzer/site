@@ -11,18 +11,18 @@ content = string(
     ),
 raw"""
 
-After writing a few blog posts, it became apparent that the lack of a full programming environment was inefficient.
-Especially the posts on statistics contain lots of tables and graphs.
-I wanted these without using copy and paste.
+After writing a few blog posts, it became apparent that the lack of a full programming environment is inefficient.
+Especially posts on statistics since they contain lots of tables and graphs.
+I wanted these posts without using copy and paste.
 Therefore, a programming language was needed.
 R is necessary for some of the statistics but is also not my favourite language.
 For example, R it is inconsistent and unsuitable for larger projects (Morandat et al., 2012).
 The Julia language is much better and can [call R](https://github.com/JuliaInterop/RCall.jl/).
-For Julia, two notebook solutions exist to write text and program output side by side.
-Notebooks via [Jupyter](https://jupyter.org/) or [Weave.jl](https://github.com/JunoLab/Weave.jl) are very nice when you remain inside the constraints.
-However, if you want to do something outside the constraints, then you need to go through a large part of the documentation or might be out of luck.
-So, I made [my own package](https://github.com/rikhuijzer/gendoc.jl) and another to include [LaTeX wihout Javascript](https://github.com/rikhuijzer/gentex.jl).
-Now, the build pipeline looks much better.
+Two notebook solutions exist for Julia to write text and program output side by side, namely [Jupyter](https://jupyter.org) and [Weave.jl](https://github.com/JunoLab/Weave).
+These are very nice when you remain inside the constraints.
+However, if you want to do something outside the constraints, then you need to read the documentation or might be out of luck.
+So, I made my own package for [generating webpages](https://github.com/rikhuijzer/gendoc.jl) and another to include [LaTeX wihout Javascript](https://github.com/rikhuijzer/gentex.jl).
+Now, the build pipeline looks much better:
 
 $$
 \begin{tikzpicture}[align=center]
@@ -46,9 +46,10 @@ $$
 \end{tikzpicture}
 $$
 
-The build is quick thanks to Julia.
-Calling the build for the first time takes a while, but subsequent calls are blazingly fast.
-Below, the build time for this website is shown and it is built again a few times to demonstrate performance on subsequent calls.
+Thanks to Julia, the build is quick.
+The first call takes a reasonable amount of time and subsequent calls are blazingly fast.
+As a demonstration, the build time for this website is shown below.
+Next, the website is built again, which is also shown.
 
 """, """
 
@@ -59,8 +60,7 @@ This speed is also achieved during development since [Revise.jl](https://github.
 
 ## Version info
 
-The source code for this site and the full history of builds are available at <https://github.com/rikhuijzer/site>.
-It is still cool to show some version information here.
+The source code for this website and the full history of builds are available at <https://github.com/rikhuijzer/site>.
 
 ```
 $(begin

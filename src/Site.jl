@@ -65,7 +65,7 @@ function generate_and_time()
         duration = string(Dates.now() - start_time)
     end
     write_times("undefined\n")
-    times = map(i -> bench(), 1:3)
+    times = map(i -> bench(), 1:4)
     show_time(time::String) = """
     julia> Site.generate()
     Built website in $(time).

@@ -33,7 +33,7 @@ jobs:
               run: nix-shell --run "julia -e 'import Site; Site.generate_and_time()'"
             - name: Generate site with Hugo
               run: hugo --gc --minify
-            - name: Deploy
+            - name: Deploy to secondary branch
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
