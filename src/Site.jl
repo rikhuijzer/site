@@ -4,21 +4,19 @@ import Codex
 import GenTeX
 
 using Dates
+using TimeZones
 using GenDoc
 
 project_root()::String = Codex.dirparent(pathof(Site), 2)
 
 """
-    process_post(filename)
+    process_page(filename, fromdir, topath)
 
-Process (blog) post at `posts/<filename>`.
+Process a webpage.
 """
-function process_post(filename)
-    include_path = joinpath(project_root(), "src", "posts", filename)
+function process_page(filename, fromdir, topath)
+    include_path = joinpath(fromdir, filename)
     text = include(include_path)
-    frompath = joinpath(project_root(), "src", "posts", filename)
-    name = Codex.rmextension(filename) 
-    topath = joinpath(project_root(), "content", "posts", "$(name).md")
     im_dir = joinpath(project_root(), "static", "latex")
     extra_packages = raw"""
         \usepackage{amsfonts}
@@ -30,6 +28,18 @@ function process_post(filename)
         write(io, with_latex)
     end
     topath
+end
+
+"""
+    process_post(filename)
+
+Process (blog) post at `posts/<filename>`.
+"""
+function process_post(filename)
+    fromdir = joinpath(project_root(), "src", "posts")
+    name = Codex.rmextension(filename) 
+    topath = joinpath(project_root(), "content", "posts", "$(name).md")
+    process_page(filename, fromdir, topath)
 end
 
 function generate() 
@@ -55,14 +65,16 @@ function generate_and_time()
         duration = string(Dates.now() - start_time)
     end
     write_times("undefined\n")
-    times = map(i -> bench(), 1:5)
+    times = map(i -> bench(), 1:3)
     show_time(time::String) = """
     julia> Site.generate()
-    Operation took $(time).
+    Built website in $(time).
     """
     times = join(map(show_time, times), '\n')
     write_times(times)
-    generate()
+    fromdir = joinpath(project_root(), "src")
+    topath = joinpath(project_root(), "content", "about-site.md")
+    process_page("about-site.jl", fromdir, topath)
 end
 
 end # module

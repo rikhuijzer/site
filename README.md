@@ -1,3 +1,3 @@
 # site
 
-Source code for my website at <https://huijzer.xyz>.
+Source for my website at <https://huijzer.xyz>.

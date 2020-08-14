@@ -1,16 +1,19 @@
+import InteractiveUtils
+import RCall
+
 read_times() = read(joinpath(project_root(), "content", "posts", "times.txt"), String)
 
 content = string(
     GenDoc.generate_front_matter(;
-        title = "'Building this site with R and Julia'",
-        date = "2020-08-14",
+        title = "'Building this site with R, Julia and Hugo'",
+        date = string(Dates.today()),
         tags = "['Julia', 'Generate', 'Build', 'R']"
     ),
 raw"""
 
-After writing a few blog posts, I became annoyed by the fact that I did not have a full programming language available.
-Especially the posts on statistics contain a lot of tables and graphs.
-I wanted to add these without using copy and paste.
+After writing a few blog posts, it became apparent that the lack of a full programming environment was inefficient.
+Especially the posts on statistics contain lots of tables and graphs.
+I wanted these without using copy and paste.
 Therefore, a programming language was needed.
 R is necessary for some of the statistics but is also not my favourite language.
 For example, R it is inconsistent and unsuitable for larger projects (Morandat et al., 2012).
@@ -19,7 +22,7 @@ For Julia, two notebook solutions exist to write text and program output side by
 Notebooks via [Jupyter](https://jupyter.org/) or [Weave.jl](https://github.com/JunoLab/Weave.jl) are very nice when you remain inside the constraints.
 However, if you want to do something outside the constraints, then you need to go through a large part of the documentation or might be out of luck.
 So, I made [my own package](https://github.com/rikhuijzer/gendoc.jl) and another to include [LaTeX wihout Javascript](https://github.com/rikhuijzer/gentex.jl).
-Now, the build pipeline looks as follows:
+Now, the build pipeline looks much better.
 
 $$
 \begin{tikzpicture}[align=center]
@@ -27,11 +30,14 @@ $$
 \tikzstyle{arrow} = [thick,->,>=stealth]
 {\fontfamily{cmss}\selectfont
     \path 
+        (0, 3.85) node[box] (latex) {LaTeX}
         (0, 2.5) node[box] (julia) {Julia}
         (0, 1.15) node[box] (r) {R}
         (3, 2.5) node[box] (hugo) {Hugo}
         (6, 2.5) node[box] (html) {HTML};
         
+        \draw [arrow] (julia) -- (latex);
+        \draw [arrow] (latex) -- (julia);
         \draw [arrow] (julia) -- (r);
         \draw [arrow] (r) -- (julia);
         \draw [arrow] (julia) -- (hugo);
@@ -42,7 +48,7 @@ $$
 
 The build is quick thanks to Julia.
 Calling the build for the first time takes a while, but subsequent calls are blazingly fast.
-These are the build times for building this website a few times:
+Below, the build time for this website is shown and it is built again a few times to demonstrate performance on subsequent calls.
 
 """, """
 
@@ -50,6 +56,36 @@ These are the build times for building this website a few times:
 $(read_times())```
 
 This speed is also achieved during development since [Revise.jl](https://github.com/timholy/revise.jl) automatically updates code changes.
+
+## Version info
+
+The source code for this site and the full history of builds are available at <https://github.com/rikhuijzer/site>.
+It is still cool to show some version information here.
+
+```
+$(begin
+    string(RCall.R"sessionInfo()")
+end)```
+
+```
+$(begin
+    try
+        mktemp() do path, io
+            run(pipeline(`julia -e 'using InteractiveUtils; versioninfo()'`, stdout=path))
+            return read(io, String)
+        end
+    catch
+    end
+end)```
+
+```
+$(begin
+    mktemp() do path, io
+        run(pipeline(`hugo version`, stdout=path))
+        return read(path, String)[1:end-20]
+    end
+end)
+```
 
 """, raw"""
 
