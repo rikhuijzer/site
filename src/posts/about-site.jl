@@ -51,7 +51,8 @@ These are the build times for building this website a few times:
 $(read_times())
 ```
 
-This speed is almost unaffected when changing the code since Revise will only reload the parts which have changed.
+This speed is also achieved during development since Revise will only reload modified code.
+
 """, raw"""
 
 
