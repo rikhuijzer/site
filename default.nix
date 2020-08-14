@@ -13,6 +13,5 @@ in pkgs.mkShell {
     ghostscript
     imagemagick
     myTex
-    which
   ];
 }

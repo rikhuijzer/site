@@ -82,7 +82,7 @@ end)```
 $(begin
     mktemp() do path, io
         run(pipeline(`hugo version`, stdout=path))
-        return read(path, String)[1:end-20]
+        return read(path, String)
     end
 end)
 ```
