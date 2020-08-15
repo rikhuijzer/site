@@ -40,6 +40,7 @@ jobs:
                 path: |
                   ~/nix/store
                   ~/nix/bin
+                # The files in the cache don't change, so we do not need `hashFiles`.
                 key: nix-v1
 
             - name: Install LaTeX
@@ -65,7 +66,7 @@ jobs:
               uses: actions/cache@v2.1.0
               with:
                 path: static/latex
-                key: latex-v1
+                key: latex-${{ hashFiles('static/latex') }}
 
             - name: Generate site with Julia
               run: julia -e 'import Site; Site.generate_and_time()'
