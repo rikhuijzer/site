@@ -55,7 +55,7 @@ Generate website multiple times and stores the time required per build.
 function generate_and_time()
     # Writing to file since it avoids cluttering the code with passing the message.
     function write_times(times)
-        open(joinpath(project_root(), "content", "posts", "times.txt"), "w") do io
+        open(joinpath(project_root(), "static", "times.txt"), "w") do io
             write(io, times)
         end
     end

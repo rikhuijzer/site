@@ -1,7 +1,7 @@
 import InteractiveUtils
 import RCall
 
-read_times() = read(joinpath(project_root(), "content", "posts", "times.txt"), String)
+read_times() = read(joinpath(project_root(), "static", "times.txt"), String)
 
 content = string(
     GenDoc.generate_front_matter(;
