@@ -6,8 +6,10 @@ content = string(
     ),
 raw"""
 
-Counting seems really basic up until the point that the numbers become extremely large.
-Combinations and permutations are such a case.
+Counting is quite simple unless you want to count a lot.
+
+Counting is simple except when there is a lot to be counted.
+Combinations and permutations are such a case; they are about counting without replacement.
 Suppose we want to count the number of possible results we can obtain from picking $k$ numbers, without replacement, from an equal or larger set of numbers, that is, from $n$ where $k \leq n$.
 When the same set of numbers in different orders should be counted separately, then the count is called the number of *permutations*.
 So, if we have some set of numbers and shuffle some numbers around, then we say that the numbers are **permuted**.
@@ -23,7 +25,7 @@ and the set of $k$ drawn numbers as
 
 $$ S_a = \{ s_1, ..., s_{k} \}. $$
 
-Since we know that $k \leq n$ we could split $U$ up into $U_a$ and $U_b$,
+We could split $U$ up into $U_a$ and $U_b$ since we know that $k \leq n$, 
 
 $$ U_a = \{ 1, ..., k \}, U_b = \{ k+1, ..., n \} $$
 
