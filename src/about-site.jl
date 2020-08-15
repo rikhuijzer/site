@@ -13,16 +13,18 @@ raw"""
 
 After writing a few blog posts, it became apparent that the lack of a full programming environment is inefficient.
 Especially posts on statistics since they contain lots of tables and graphs.
-I wanted these posts without using copy and paste.
+I wanted these without using copy and paste.
 Therefore, a programming language was needed.
 R is necessary for some of the statistics but is also not my favourite language.
-For example, R it is inconsistent and unsuitable for larger projects (Morandat et al., 2012).
+R is unsuitable for larger projects (Morandat et al., 2012) and inconsistent.
 The Julia language is much better and can [call R](https://github.com/JuliaInterop/RCall.jl/).
-Two notebook solutions exist for Julia to write text and program output side by side, namely [Jupyter](https://jupyter.org) and [Weave.jl](https://github.com/JunoLab/Weave).
+This leaves the question of how to get text, code and program output to show side by side.
+The typical answer is to use notebooks. 
+Two notebook solutions exist for Julia, namely [Jupyter](https://jupyter.org) and [Weave.jl](https://github.com/JunoLab/Weave).
 These are very nice when you remain inside the constraints.
 However, if you want to do something outside the constraints, then you need to read the documentation or might be out of luck.
 So, I made my own package for [generating webpages](https://github.com/rikhuijzer/gendoc.jl) and another to include [LaTeX wihout Javascript](https://github.com/rikhuijzer/gentex.jl).
-Now, the build pipeline looks much better:
+Now, the build pipeline is very capable:
 
 $$
 \begin{tikzpicture}[align=center]
