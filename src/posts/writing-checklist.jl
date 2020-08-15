@@ -18,7 +18,6 @@ The text should:
 1. Ensure that the writing is [valuable to the community of readers](/posts/writing-effectively).
 1. Be polite, that is, not contain a career limiting move.
   For example, do not "write papers proclaiming the superiority of your work and the pathetic inadequacy of the contributions of A, B, C, ..." (Wadge, 2020).
-1. Match the expected knowledge of the target audience.
 1. Be made as simple as possible, but not simpler[^simple].
   This is also known as [Occam's razor](https://en.wikipedia.org/wiki/Occam%27s_razor), [kill your darlings](https://thewritepractice.com/kill-your-darlings/) or the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle).
 1. Be consistent.
@@ -27,14 +26,8 @@ The text should:
 1. Avoid comma splices.
 1. Flow naturally; just like a normal conversation.
   This is, for me, contradictory to [writing when programming](#writing-when-programming).
-1. Satisfy the expected writing style.
-  For example, the writing style of a journal can be learned from the submission guidelines and previous papers.
-  The latter can inform about specifics such as whether to use passive voice.
-  As another example, readers expect a blog to be written in a certain way and satisfying this will improve readability.
-1. Catch the reader's attention in the first few sentences.
-1. Provide an high-level overview of the text.
+1. Provide a high-level overview of the text.
   This can be a summary, abstract, a few sentences in the introduction or a combination of these.
-1. Introduce the topic by narrowing down from a broad topic to the topic at hand.
 1. Prefer common collocations.
   A list of common collocations is [The Academic Collocation List](http://pearsonpte.com/wp-content/uploads/2014/07/AcademicCollocationList.pdf).
 1. Use simple verbs, for example, prefer "stop" over "cease to move on" or "do not continue".
