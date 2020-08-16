@@ -7,7 +7,7 @@ let
     # pgf contains TikZ.
     inherit (texlive) scheme-basic dvisvgm amsfonts mathtools pdfcrop stmaryrd pgf xcolor;
   };
-in with.pkgs; [
-  hugo
+in [
+  pkgs.hugo
   myTex
 ]
