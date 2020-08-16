@@ -20,19 +20,12 @@ jobs:
             - name: Install Julia packages
               run: julia setup-packages.jl
 
-            - name: Install Hugo
-              uses: peaceiris/actions-hugo@v2
-              with:
-                  hugo-version: '0.64.0'
-                  extended: true
-
             # Using the Nix package manager since the version of `dvisvgm` in Ubuntu is too old.
             - name: Install Nix
               uses: cachix/install-nix-action@v10
               with: 
                 nix_path: nixpkgs=channel:nixos-20.03
 
-            # See https://github.com/rikhuijzer/test-caching.
             - name: Cache Nix store
               id: cache-nix-store
               uses: actions/cache@v2.1.0
@@ -40,16 +33,16 @@ jobs:
                 path: |
                   ~/nix/store
                   ~/nix/bin
-                key: nix-${{ hashFiles('latex.nix') }}
+                key: nix-${{ hashFiles('default.nix') }}
 
-            - name: Install LaTeX
+            - name: Install via Nix
               env: 
                 CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
               run: |
                 NIX_BIN=/nix/var/nix/profiles/per-user/runner/profile/bin
                 NIX_STORE=/nix/store
                 if [[ "$CACHE_HIT" != 'true' ]]; then
-                  nix-env --install --file latex.nix
+                  nix-env --install
                   sudo cp --force --recursive $NIX_STORE/ ~/nix/store
                   sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
                 else
