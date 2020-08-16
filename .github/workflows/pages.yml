@@ -46,8 +46,9 @@ jobs:
                   sudo cp --force --recursive $NIX_STORE/ ~/nix/store
                   sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
                 else
-                  sudo cp --force --recursive ~/nix/store $NIX_STORE
+                  sudo mkdir --parents $NIX_STORE
                   sudo mkdir --parents $NIX_BIN
+                  sudo cp --force --recursive ~/nix/store $NIX_STORE
                   sudo cp --force --recursive ~/nix/bin $NIX_BIN
                 fi
 
