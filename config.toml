@@ -40,23 +40,6 @@ unsafe = true
     math = true
     custom_css = []
 
-# Social links
-[[params.social]]
-		name = "Mail"
-		icon = "fas fa-paper-plane fa-2x"
-		weight = 1
-		url = "mailto:t.h.huijzer@rug.nl"
-[[params.social]]
-		name = "LinkedIn"
-		icon = "fab fa-linkedin fa-2x"
-		weight = 4
-		url = "https://www.linkedin.com/in/rik-huijzer/"
-[[params.social]]
-		name = "University of Groningen"
-		icon = "fas fa-building fa-2x"
-		weight = 7
-		url = "https://www.rug.nl/staff/t.h.huijzer/"
-
 # GDPR settings
 [privacy]
   [privacy.disqus]
@@ -74,10 +57,10 @@ unsafe = true
 
 # Menu links
 [[menu.main]]
-    name = "Blog"
+    name = "About"
     weight = 1
-    url  = "/posts/"
+    url = "/about"
 [[menu.main]]
-    name = "CV"
-    weight = 2
-    url = "/cv/"
+    name = "Posts"
+    weight = 1
+    url  = "/posts"

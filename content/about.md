@@ -1,8 +1,10 @@
 ---
-title: Curriculum vitae
+title: About
 ---
 
-PhD student at the Faculty of Behavioural and Social Sciences, University of Groningen.
+I'm a PhD student at the Faculty of Behavioural and Social Sciences, University of Groningen.
+
+e-mail: <t.h.huijzer@rug.nl>
 
 ## Education
 **Eindhoven University of Technology**<br>
