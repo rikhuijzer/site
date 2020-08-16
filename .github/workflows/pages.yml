@@ -51,9 +51,10 @@ jobs:
                 if [[ "$CACHE_HIT" != 'true' ]]; then
                   nix-env --install --file latex.nix
                   sudo cp --force --recursive $NIX_STORE/ ~/nix/store
-                  sudo cp --verbose --force --recursive $NIX_BIN/ ~/nix/bin
+                  sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
                 else
                   sudo cp --force --recursive ~/nix/store $NIX_STORE
+                  mkdir --parents $NIX_BIN
                   sudo cp --force --recursive ~/nix/bin $NIX_BIN
                 fi
 
