@@ -7,12 +7,12 @@ content = string(
 raw"""
 
 According to McEnerney (2015), academics are trained to be poor writers.
-Eventually, they end up in his office and tell, while crying, that their career might end soon.
+Eventually, they end up in his office and tell, while crying, that their careers might end soon.
 One reason why academics are poor writers is that they are *expert writers*.
 Expert writers are not experts in writing but are experts who write.
-Thinking for an expert writer is typically done via writing and they claim this is good enough for readers.
+An expert writer typically thinks via writing and they claim this raw output is good enough for readers.
 However, it isn't good enough.
-For a start, expert writers have a worldview which differs from the readers' due to the writer's expertise.
+For a start, expert writers have a worldview which differs from the readers' due to the writers' expertise.
 So, to avoid crying, McEnerney argues that writers should instead write to be **valuable** to the **community** of readers.
 
 Focussing mainly on texts being valuable may seem odd.
@@ -25,7 +25,7 @@ When a text is not valuable, people will
 
 So, ensure that people are able to keep the pace when reading.
 To do so, most people have learned that writing should be organized, pervasive and clear.
-However, an useless, organized, pervasive and clear text is just useless.
+However, a useless, organized, pervasive and clear text is just useless.
 Another misconception is that writing should explain your thoughts.
 Only people like teachers care about your thoughts since they are paid to care.
 So, it's about writing texts which people find genuinly interesting.
@@ -35,7 +35,7 @@ Actually, it is how things work; excitement has been selling newspapers for year
 
 Excitement can be achieved by arguing against existing work, pointing out contradictions and solving problems.
 Do beware that you argue against existing work according to the rules, so don't write a paper "proclaiming the superiority of your work and the pathetic inadequacy of the contributions of A, B, C, ..." (Wadge, 2020).
-Instead, checkout previous work and see how they did it.
+Instead, check out previous work and see how they did it.
 Daring to go against existing work is truly important since only adding new knowledge is boring.
 There are an infinite number of new pieces of knowledge to be found.
 If you add one new piece, then the number will remain infinite.
@@ -54,10 +54,10 @@ Like him, these communities are usually too male, too pale and too stale.
 It's not how it should be, but it is how it works.
 To persuade these people, estimate what the reader doubts.
 Also, know that the community is not as clever as you might expect.
-Communities knows a finite set of papers.
+Communities know a finite set of papers.
 So, don't write like your work will last for eternity.
 People of the future will just cite better works and forget about yours.
-At the end of the day, you should be fine with just pushing the discussion forwards.
+At the end of the day, you should be fine with just pushing the discussion forward.
 In other words, you write to change current ideas.
 
 ## References
