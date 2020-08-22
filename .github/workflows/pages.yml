@@ -45,6 +45,11 @@ jobs:
                   sudo cp --force --recursive ~/nix/bin $NIX_BIN
                 fi
 
+            - name: Validate Nix install
+              run: |
+                  which hugo
+                  which dvisvgm
+
             - name: Install Julia
               uses: julia-actions/setup-julia@latest 
               with:
