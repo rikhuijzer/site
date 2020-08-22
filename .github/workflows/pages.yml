@@ -29,7 +29,8 @@ jobs:
 
             - name: Install via Nix
               env: 
-                CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
+                # CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
+              CACHE_HIT: 'false'
               run: |
                 NIX_BIN=/nix/var/nix/profiles/per-user/runner/profile/bin
                 NIX_STORE=/nix/store
