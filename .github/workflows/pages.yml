@@ -36,9 +36,9 @@ jobs:
                 # if [[ "$CACHE_HIT" != 'true' ]]; then
                 if [[ "$CACHE_HIT" != 'disable-cache' ]]; then
                   nix-env --install --file default.nix
-                  mkdir ~/nix
-                  sudo cp --force --recursive $NIX_STORE/ ~/nix/store
-                  sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
+                  # mkdir ~/nix
+                  # sudo cp --force --recursive $NIX_STORE/ ~/nix/store
+                  # sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
                 else
                   sudo mkdir --parents $NIX_STORE
                   sudo mkdir --parents $NIX_BIN
