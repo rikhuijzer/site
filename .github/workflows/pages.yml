@@ -29,12 +29,12 @@ jobs:
 
             - name: Install via Nix
               env: 
-                # CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
-              CACHE_HIT: false
+                CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
               run: |
                 NIX_BIN=/nix/var/nix/profiles/per-user/runner/profile/bin
                 NIX_STORE=/nix/store
-                if [[ "$CACHE_HIT" != 'true' ]]; then
+                # if [[ "$CACHE_HIT" != 'true' ]]; then
+                if [[ "$CACHE_HIT" != 'disable-cache' ]]; then
                   nix-env --install --file default.nix
                   mkdir ~/nix
                   sudo cp --force --recursive $NIX_STORE/ ~/nix/store
