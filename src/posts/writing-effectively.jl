@@ -10,7 +10,7 @@ According to McEnerney (2015), academics are trained to be poor writers.
 Eventually, they end up in his office and tell, while crying, that their careers might end soon.
 One reason why academics are poor writers is that they are *expert writers*.
 Expert writers are not experts in writing but are experts who write.
-An expert writer typically thinks via writing and they claim this raw output is good enough for readers.
+An expert writer typically thinks via writing and they assume that this raw output is good enough for readers.
 However, it isn't good enough.
 For a start, expert writers have a worldview which differs from the readers' due to the writers' expertise.
 So, to avoid crying, McEnerney argues that writers should instead write to be **valuable** to the **community** of readers.

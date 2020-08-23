@@ -1,4 +1,3 @@
-
 content = string(
     GenDoc.generate_front_matter(;
         title = "'The benefits of writing blog posts'",
@@ -7,10 +6,8 @@ content = string(
     ),
 raw"""
 
-<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
-
 The first step into creating good habits is figuring out why exactly you want the habit.
-To me writing blog posts seems like a good habit, but I'm unsure why.
+To me, writing blog posts seems like a good habit, but I'm unsure why.
 This post will attempt to convince the reader and myself of the benefits.
 I have combined my own ideas with the ideas by Terry Tao [[1]](#1) and Gregory Gunderson [[2]](#2), and grouped them.
 
@@ -19,10 +16,10 @@ I have combined my own ideas with the ideas by Terry Tao [[1]](#1) and Gregory G
 - Writing detailed expository notes is a way to practise research.
   This allows you to break free from the methods you are used to [[2]](#2).
 - One can practise writing [[1]](#1).
-- Allows one to test understanding of an idea [[1]](#1).
+- Writing allows one to test understanding of an idea [[1]](#1).
   It forces you to explain it clearly without hand waving.
   When aiming your text at colleagues or future employers, you cannot use jargon to hide your lack of knowledge [[2]](#2).
-- Writing allows figuring out what exactly you do not understand, or what you need to learn first [[2]](#2).
+- Writing allows figuring out what exactly you do not understand or what you need to learn first [[2]](#2).
 - Writing aids in structuring knowledge [[2]](#2).
 
 ### Practical benefits
@@ -35,17 +32,14 @@ I have combined my own ideas with the ideas by Terry Tao [[1]](#1) and Gregory G
 
 ### Collaborative benefits
 
-- Sharing information with friends and colleges is more easy.
-  For example, I'm a fan of Git but find it hard to explain what is exactly so great about it.
-  After writing a post on it, my thoughts are much more structured, and I can even refer people to the text.
+- It eases sharing information with friends and colleagues.
 - Much (scientific) knowledge, which someone in this world has, is not known to the public.
   Writing technical blogs can help to spread information [[2]](#2).
 - Others can inform you of mistakes in your thoughts.
   See the post by [Swartz (2006)](#3) for more about better thinking.
-- Compared to papers blogs are read by more people.
+- Compared to papers, blogs are read by more people.
 
-If you are aware of more benefits, then please let me know, so I can add them to the list.
-By now, I hope to have convinced the reader.
+By now, I hope the reader is convinced.
 I have, at least, convinced myself.
 
 ### References
