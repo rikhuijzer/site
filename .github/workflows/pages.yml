@@ -1,6 +1,8 @@
 name: pages
 
 on:
+  schedule:
+    - cron: '36 14 * * 7'
   push:
     branches:
     - 'master'
