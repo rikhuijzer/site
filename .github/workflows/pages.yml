@@ -1,82 +1,54 @@
 name: pages
 
 on:
-    push:
-        branches:
-            - 'master'
+  push:
+    branches:
+    - 'master'
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Git checkout
-              uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Git checkout
+    uses: actions/checkout@v2
 
-            # Using the Nix package manager since the version of `dvisvgm` in Ubuntu is too old.
-            - name: Install Nix
-              uses: cachix/install-nix-action@v10
-              with: 
-                nix_path: nixpkgs=channel:nixos-20.03
+    # Using the Nix package manager since the version of `dvisvgm` in Ubuntu is too old.
+    - name: Cache install Nix packages
+      uses: nix-actions/cache-install@v1.0.6
+      with: 
+        key: nix-${{ hashFiles('default.nix') }}
 
-            - name: Cache Nix store
-              id: cache-nix-store
-              uses: actions/cache@v2.1.0
-              with:
-                path: |
-                  ~/nix/store
-                  ~/nix/bin
-                key: nix-${{ hashFiles('default.nix') }}
+    - name: Validate Nix install
+      run: |
+        which hugo
+        which dvisvgm
 
-            - name: Install via Nix
-              env: 
-                CACHE_HIT: ${{ steps.cache-nix-store.outputs.cache-hit }}
-              run: |
-                NIX_BIN=/nix/var/nix/profiles/per-user/runner/profile/bin
-                NIX_STORE=/nix/store
-                # if [[ "$CACHE_HIT" != 'true' ]]; then
-                if [[ "$CACHE_HIT" != 'disable-cache' ]]; then
-                  nix-env --install --file default.nix
-                  # mkdir ~/nix
-                  # sudo cp --force --recursive $NIX_STORE/ ~/nix/store
-                  # sudo cp --force --recursive $NIX_BIN/ ~/nix/bin
-                else
-                  sudo mkdir --parents $NIX_STORE
-                  sudo mkdir --parents $NIX_BIN
-                  sudo cp --force --recursive ~/nix/store $NIX_STORE
-                  sudo cp --force --recursive ~/nix/bin $NIX_BIN
-                fi
+    - name: Install Julia
+      uses: julia-actions/setup-julia@latest 
+      with:
+        version: 1.5
 
-            - name: Validate Nix install
-              run: |
-                  which hugo
-                  which dvisvgm
+    - name: Install Julia packages
+      run: julia setup-packages.jl
 
-            - name: Install Julia
-              uses: julia-actions/setup-julia@latest 
-              with:
-                  version: 1.5
+    - name: Roughly summarize state
+      run: ls src/posts > posts-list.txt
 
-            - name: Install Julia packages
-              run: julia setup-packages.jl
+    - name: Cache LaTeX output
+      uses: actions/cache@v2.1.0
+      with:
+        path: static/latex
+        key: latex-${{ hashFiles('posts-list.txt') }}
 
-            - name: Roughly summarize state
-              run: ls src/posts > posts-list.txt
+    - name: Generate site with Julia
+      run: julia -e 'import Site; Site.generate_and_time()'
 
-            - name: Cache LaTeX output
-              uses: actions/cache@v2.1.0
-              with:
-                path: static/latex
-                key: latex-${{ hashFiles('posts-list.txt') }}
+    - name: Generate site with Hugo
+      run: hugo --gc --minify
 
-            - name: Generate site with Julia
-              run: julia -e 'import Site; Site.generate_and_time()'
-
-            - name: Generate site with Hugo
-              run: hugo --gc --minify
-
-            - name: Deploy to secondary branch
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./public
-                  cname: huijzer.xyz
+    - name: Deploy to secondary branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        cname: huijzer.xyz
