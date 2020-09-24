@@ -36,7 +36,7 @@ I have combined my own ideas with the ideas by Terry Tao [[1]](#1) and Gregory G
 - Much (scientific) knowledge, which someone in this world has, is not known to the public.
   Writing technical blogs can help to spread information [[2]](#2).
 - Others can inform you of mistakes in your thoughts.
-  See the post by [Swartz (2006)](#3) for more about better thinking.
+  See the post by Swartz [[3]](#3) for more about better thinking.
 - Compared to papers, blogs are read by more people.
 
 By now, I hope the reader is convinced.

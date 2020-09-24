@@ -40,7 +40,7 @@ jobs:
       uses: actions/cache@v2.1.0
       with:
         path: static/latex
-        key: latex-${{ hashFiles('posts-list.txt') }}
+        key: latex-${{ hashFiles('posts-list.txt') }}-v2
 
     - name: Generate site with Julia
       run: julia -e 'import Site; Site.generate_and_time()'
