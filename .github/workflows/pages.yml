@@ -23,27 +23,3 @@ jobs:
     - name: Validate Nix install
       run: which dvisvgm
 
-    - name: Install Julia packages
-      run: julia setup-packages.jl
-
-    - name: Roughly summarize state
-      run: ls src/posts > posts-list.txt
-
-    - name: Cache LaTeX output
-      uses: actions/cache@v2.1.0
-      with:
-        path: static/latex
-        key: latex-${{ hashFiles('posts-list.txt') }}
-
-    - name: Generate site with Julia
-      run: julia -e 'import Site; Site.generate_and_time()'
-
-    - name: Generate site with Hugo
-      run: hugo --gc --minify
-
-    - name: Deploy to secondary branch
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-        cname: huijzer.xyz
