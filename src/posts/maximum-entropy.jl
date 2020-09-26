@@ -31,6 +31,7 @@ function plot_distribution(name, Y)
     this_filename = first(split(basename(@__FILE__), '.'))
     dir = joinpath(path_prefix, this_filename)
     path_prefix = mkpath(dir)
+    @show path_prefix
     path = joinpath(dir, "$name.png")
     rplot("$name.svg"; path_prefix=path_prefix, uri_prefix="/plots/$this_filename", width=4, height=0.8, scale=1.6, bg="transparent")
 end
