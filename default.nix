@@ -6,10 +6,6 @@ let
     inherit config; 
   };
 
-  config = {
-    allowBroken = true;
-  };
-
   papajaBuildInputs = with pkgs.rPackages; [
     afex
     base64enc
@@ -40,6 +36,7 @@ let
     ggplot2
     git2r
     latex2exp
+    papaja
     tidyverse
     svglite
     zip
@@ -222,6 +219,6 @@ in with pkgs; [
   git
   hugo
   julia-fhs
-  myTex
   R-with-my-packages
+  myTex
 ]
