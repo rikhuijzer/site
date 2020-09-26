@@ -21,14 +21,7 @@ jobs:
         key: nix-${{ hashFiles('default.nix') }}
 
     - name: Validate Nix install
-      run: |
-        which hugo
-        which dvisvgm
-
-    - name: Install Julia
-      uses: julia-actions/setup-julia@latest 
-      with:
-        version: 1.5
+      run: which dvisvgm
 
     - name: Install Julia packages
       run: julia setup-packages.jl
@@ -40,7 +33,7 @@ jobs:
       uses: actions/cache@v2.1.0
       with:
         path: static/latex
-        key: latex-${{ hashFiles('posts-list.txt') }}-v2
+        key: latex-${{ hashFiles('posts-list.txt') }}
 
     - name: Generate site with Julia
       run: julia -e 'import Site; Site.generate_and_time()'
