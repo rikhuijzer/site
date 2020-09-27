@@ -1,3 +1,5 @@
+using GenDoc
+
 content = string(
     GenDoc.generate_front_matter(;
         title = "'Niceties in the Julia programming language'",
@@ -182,6 +184,41 @@ julia> map(x -> reduce(∘, conversions)(x), input)
 ```
 (again, works only in a Notebook.)
 Note that the functions are applied in reverse order.
+
+## Unpacking
+
+Just like in Python, there is syntax to unpack collections.
+For example, lets consider a tuple:
+```
+julia> c = (1, 2)
+(1, 2)
+
+julia> l = [c...]
+2-element Array{Int64,1}:
+ 1
+ 2
+```
+This list can also be unpacked:
+```
+julia> [9, l...]
+3-element Array{Int64,1}:
+ 9
+ 1
+ 2
+```
+The most useful applications are usually when passing parameters to functions.
+```
+julia> z(a, b, c) = "$a | $b | $c"
+z (generic function with 1 method)
+
+julia> z(c..., 4)
+"1 | 2 | 4"
+```
+For named tuples, the names are ignored.
+```
+julia> z((b = 1, d = 2)..., 3)
+"1 | 2 | 3"
+```
 
 ## Metaprogramming
 A simple example of metaprogramming in Julia are macros.

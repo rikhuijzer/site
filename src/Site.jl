@@ -23,9 +23,13 @@ function process_page(filename, fromdir, topath)
         \usepackage{mathtools}
         \usepackage{tikz}
         """
-    with_latex = GenTeX.substitute_latex(text, 1.6, im_dir; extra_packages)
+    avoid_latex = ["julia.jl"]
+
+    if !(filename in avoid_latex)
+        text = GenTeX.substitute_latex(text, 1.6, im_dir; extra_packages)
+    end
     open(topath, "w") do io
-        write(io, with_latex)
+        write(io, text)
     end
     topath
 end
