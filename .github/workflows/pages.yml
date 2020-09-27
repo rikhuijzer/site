@@ -30,6 +30,13 @@ jobs:
     - name: Install Julia packages
       run: julia setup-packages.jl
 
+    # Using the Nix package manager since the version of `dvisvgm` in Ubuntu is too old.
+    - name: Cache install LaTeX
+      uses: nix-actions/cache-install@v1.0.6
+      with:
+        key: nix-${{ hashFiles('latex.nix') }}
+        nix_file: 'latex.nix'
+
     - name: Roughly summarize state for the LaTeX cache key
       run: ls src/posts > posts-list.txt
 
@@ -37,7 +44,7 @@ jobs:
       uses: actions/cache@v2.1.0
       with:
         path: static/latex
-        key: latex-${{ hashFiles('posts-list.txt') }}
+        key: latex-${{ hashFiles('posts-list.txt') }}-v2
 
     - name: Install Hugo
       uses: peaceiris/actions-hugo@v2

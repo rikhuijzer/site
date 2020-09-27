@@ -41,7 +41,7 @@ title = "Principle of maximum entropy"
 content = "
 $(GenDoc.generate_front_matter(; title="Principle of maximum entropy", date="2020-09-26"))
 
-Say that you are a statistician and are asked to come up with a probability distribution for the current state of knowledge on some particular topic you know nothing about.
+Say that you are a statistician and are asked to come up with a probability distribution for the current state of knowledge on some particular topic you know little about.
 (This, in Bayesian statistics, is known as choosing a suitable prior.)
 To do this, the safest bet is coming up with the least informative distribution via the *principle of maximum entropy*.
 
@@ -66,7 +66,7 @@ We could satisfy these constraints by choosing \$P_4 = P_5 = \\frac{1}{2}\$
 
 $(plot_distribution("naive", [0, 0, 0, 0.5, 0.5, 0]))
 
-This is unlikely to be the distribution for our data since it can be derived in relatively few ways, namely: by only throwing \$4\$ and \$5\$, and in such a way that the throws average to \$4.5\$.
+This is unlikely to be the distribution for our data since it can be derived in relatively few ways, namely: by throwing only \$4\$ and \$5\$, and in such a way that the throws average to \$4.5\$.
 A more likely distribution would be 
 
 $(plot_distribution("quarters", [0, 0, 1/4, 1/4, 1/4, 1/4]))
@@ -82,11 +82,11 @@ The correct measure is the following information measure (Shannon, 1948), which 
 \\[ S_I = - \\sum_i p_i \\log p_i. \\]
 
 We can find \$p_i\$ for \$p_i = 1, 2, \\ldots, 6\$ by maximizing \$S_I\$ for given constraints.
-This problem, known as MaxEnt, is hard to solve since there are \$6\$ unknowns and various constraints.
-The solution can be approximated by rewriting the problem as a linear program.
+This problem, known as MaxEnt, is hard to solve manually since there are \$6\$ unknowns and various constraints.
+The solution can be approximated by rewriting it to a linear program.
 
 Alternatively, analytic solutions exist for some subsets of this Shanon entropy maximization problem (Zabarankin and Uryasev, 2014).
-Here, we have that only the mean is known, so the number of moments \$m\$ is \$1\$.
+Here, we have that the mean is known (and nothing else), so the number of moments \$m\$ is \$1\$.
 Then, the maximum entropy distribution takes the form (Zabarankin and Uryasev, 2014; Eq. 5.1.7)
 
 \\[ P_n = \\frac{e^{\\rho n}}{\\sum_{n=1}^6 e^{\\rho n}}, \\: \\text{ for } n = 1, 2, ..., 6. \\]
