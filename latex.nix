@@ -6,7 +6,7 @@ let
   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/archive/${rev}.tar.gz";
   pkgs = import nixpkgs {};
   myTex = with pkgs; texlive.combine {
-    inherit (texlive) scheme-basic dvisvgm amsfonts pdfcrop stmaryrd;
+    inherit (texlive) scheme-basic dvisvgm amsfonts pdfcrop stmaryrd amsmath;
   };
 in [
   myTex
